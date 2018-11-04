@@ -1,0 +1,31 @@
+<div class="motorcycle-show">
+	<div id="motorcycle-image">
+		<%= cl_image_tag(@motorcycle.picture, width: 150, height: 150, crop: :thumb, gravity: :face) %>
+	</div>
+	<div class="motorcycle-details">
+    	<p><%= @motorcycle.moto_type %></p>
+    	<p><%= @motorcycle.description %></p>
+    	<p><%= @motorcycle.price.to_s + " USD per day" %></p>
+	</div>
+	<div>
+		<%= pluralize @motorcycle.reviews.size, "review" %>
+    	<p>Here's the latest:</p>
+        <% @motorcycle.reviews.last(3).each do |review|%>
+            <% review.stars.times do%>
+            	<i class="far fa-star"></i>
+        	<% end %>
+        	<br>
+        	<p><%= review.content %></p>
+        	<br>
+        <% end %>	
+	</div>
+</div>
+
+
+<div>
+    <% if user_signed_in? %>
+        <%= link_to "Book #{@motorcycle.name} now", new_motorcycle_booking_path(@motorcycle, search: {start_date: params["search"]["end_date"], ends_at: params["search"]["ends_at"]}) %>
+     <% else %>
+        <%= link_to "Book #{@motorcycle.name} now", new_user_registration_path(moto: params[:id], search: {starts_at: params["search"]["start_date"], ends_at: params["search"]["end_date"]}) %>
+    <% end %>
+</div>
