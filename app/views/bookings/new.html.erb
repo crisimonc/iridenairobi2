@@ -1,2 +1,8 @@
-<!-- new.html.erb-->
+<h3>Choose your delivery address</h3>
+<%= simple_form_for [@motorcycle, @booking] do |f| %>
+        <%= f.input :start_date, as: hidden, :input_html => { value: params["search"]["start_date"] } %>
+        <%= f.input :end_date, as: hidden, :input_html => { value: params["search"]["end_date"] } %>
+        <%= f.input :address %>
+        <%= f.submit "Proceed with your booking", class: "btn btn-primary" %>
+<% end %><!-- new.html.erb-->
 

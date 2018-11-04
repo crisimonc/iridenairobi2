@@ -6,27 +6,24 @@ class BookingsController < ApplicationController
 
   	def show
    		@booking = Booking.find(params[:id])
+
+      @markers= 
+      {
+        latitude: @booking.latitude,
+        longitude: @booking.longitude#,
+      }
   	end
 
   	def new
     	@motorcycle = Motorcycle.find(params[:motorcycle_id])
-    	@booking = Booking.new
+      @booking = Booking.new
+    end
 
-    	@booking_map = Booking.where.not(latitude: nil, longitude: nil)
-
-    	@markers = @booking_map.map do |location|
-      		{
-        		lat: location.latitude,
-        		lng: location.longitude,
-      		}
-    	end
-  	end
-
-  	def create
+    def create
     	@booking = Booking.new(booking_params)
-		@booking.motorcycle = Motorcycle.find(params[:motorcycle_id])
+		  @booking.motorcycle = Motorcycle.find(params[:motorcycle_id])
     	@booking.user = current_user
-
+      
     	if @booking.save
       		redirect_to motorcycle_booking_path(@booking.motorcycle, @booking)
     	else

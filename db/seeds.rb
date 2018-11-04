@@ -142,7 +142,7 @@ puts "Creating Bookings..."
 5.times do
   motorcycle = Motorcycle.all.sample
   user = User.all.sample
-  Booking.create(user: user, motorcycle: motorcycle, start_date: time_rand.to_date, end_date: time_rand.to_date, address: "Nairobi", lat: 1.3031934, lng: 36.5672003)
+  Booking.create(user: user, motorcycle: motorcycle, start_date: time_rand.to_date, end_date: time_rand.to_date, address: "Nairobi")
 end
 puts "Bookings created!"
 

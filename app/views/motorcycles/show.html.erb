@@ -24,8 +24,8 @@
 
 <div>
     <% if user_signed_in? %>
-        <%= link_to "Book #{@motorcycle.name} now", new_motorcycle_booking_path(@motorcycle, search: {start_date: params["search"]["end_date"], ends_at: params["search"]["ends_at"]}) %>
+        <%= link_to "Book #{@motorcycle.name} now", new_motorcycle_booking_path(@motorcycle, search: {start_date: params["search"]["starts_at"], end_date: params["search"]["ends_at"]}) %>
      <% else %>
-        <%= link_to "Book #{@motorcycle.name} now", new_user_registration_path(moto: params[:id], search: {starts_at: params["search"]["start_date"], ends_at: params["search"]["end_date"]}) %>
+        <%= link_to "Book #{@motorcycle.name} now", new_user_registration_path(moto: params[:id], search: {start_date: params["search"]["starts_at"], end_date: params["search"]["ends_at"]}) %>
     <% end %>
 </div>
