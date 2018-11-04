@@ -1,0 +1,24 @@
+<!-- index.html.erb -->
+
+<div class="moto-wrapper">
+  	<div class="row">
+    	<% @motorcycles.each do |moto|%>
+
+    		<div class="col-xs-12 col-sm-4">
+    	
+			<div class="card"  style="background-image: linear-gradient(rgba(232, 224, 224, 0.3), rgba(196, 55, 16, 0.2)), url(<%= cl_image_path(moto.picture)%>);">
+
+
+	    		<div class="card-category"><h4><%= link_to moto.name, motorcycle_path(moto, search: {starts_at: params["search"]["starts_at"], ends_at: params["search"]["ends_at"]} ) %></h4></div>
+	        	<div class="card-description">
+	      			<p><%= moto.motor_type  %></p>
+	         		<p><%= moto.price.to_s + "USD per day" %></p>
+	    		</div>
+
+	   			</div>
+
+    </div>
+
+   <% end %>
+  </div>
+</div>
